@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Builder Portfolio — Becky Elliott</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue500: #5774FC;
+      --blue600: #4D6AF5;
+      --blue700: #425FE6;
+      --blue200: #D9E0FF;
+      --blue50:  #F3F5FD;
+      --yellow:  #FED502;
+      --text:    #231F20;
+      --gray600: #616060;
+      --gray50:  #F9F9F9;
+      --gray300: #D9D9D9;
+      --white:   #FFFFFF;
+      --radius-pill: 500px;
+      --radius-card: 16px;
+      --max-w: 970px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray300);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--blue500);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .nav-links a:hover { background: var(--blue50); }
+
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(160deg, var(--blue50) 0%, var(--blue200) 100%);
+      padding: 100px 32px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--blue200) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--blue200) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue500);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 24px;
+    }
+
+    #hero h1 {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .hero-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--blue500);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gray600);
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--blue500);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--blue600); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 32px; }
+
+    .section-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue500);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+
+    .about-layout {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .about-photo {
+      flex-shrink: 0;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid var(--blue200);
+      box-shadow: 0 8px 32px rgba(87, 116, 252, 0.15);
+    }
+
+    .about-content { flex: 1; }
+
+    .about-text {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    @media (max-width: 720px) {
+      .about-layout { flex-direction: column; gap: 28px; }
+      .about-photo { width: 160px; height: 160px; }
+    }
+
+    /* ── WORK ── */
+    #work { background: var(--blue50); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .work-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      border: 1px solid var(--gray300);
+    }
+
+    .work-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--blue200);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .work-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .work-card p {
+      color: var(--gray600);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── YELLOW ACCENT ── */
+    .accent-bar {
+      background: var(--yellow);
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    .accent-bar p {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* ── AI PROJECTS ── */
+    #projects { background: var(--white); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--gray300);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--blue500);
+      box-shadow: 0 4px 20px rgba(87, 116, 252, 0.12);
+    }
+
+    .project-coming-soon {
+      display: inline-block;
+      background: var(--blue50);
+      color: var(--blue500);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      width: fit-content;
+    }
+
+    .project-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: var(--gray600);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--blue500);
+      color: var(--blue500);
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+    }
+
+    .btn-link:hover {
+      background: var(--blue500);
+      color: var(--white);
+    }
+
+    /* ── PROJECT BUILT BADGE ── */
+    .project-built {
+      display: inline-block;
+      background: var(--blue500);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      width: fit-content;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(35, 31, 32, 0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 40px;
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      margin-bottom: 28px;
+      padding-right: 32px;
+    }
+
+    .modal-type {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue500);
+      margin-bottom: 6px;
+    }
+
+    .modal h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .modal-body {
+      color: var(--gray600);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--gray600);
+      line-height: 1;
+      padding: 4px;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    /* ── STEP LIST (How I Built This) ── */
+    .step-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--blue500);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .step-content { flex: 1; }
+
+    .step-content strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .step-content span {
+      font-size: 14px;
+      color: var(--gray600);
+      line-height: 1.5;
+    }
+
+    /* ── DESIGN DOCS (Documentation popup) ── */
+    .docs-section { margin-bottom: 32px; }
+
+    .docs-section:last-child { margin-bottom: 0; }
+
+    .docs-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue500);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--gray300);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--gray300);
+    }
+
+    .swatch-color {
+      height: 48px;
+      width: 100%;
+    }
+
+    .swatch-label {
+      padding: 6px 8px;
+      background: var(--white);
+    }
+
+    .swatch-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      color: var(--gray600);
+      font-family: monospace;
+    }
+
+    .type-samples { display: flex; flex-direction: column; gap: 12px; }
+
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray300);
+    }
+
+    .type-row:last-child { border-bottom: none; }
+
+    .type-spec {
+      font-size: 11px;
+      color: var(--gray600);
+      min-width: 100px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    .vibe-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .vibe-tag {
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ── TECHNIQUE / PROMPT LISTS ── */
+    .doc-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .doc-list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .doc-list-item::before {
+      content: '→';
+      color: var(--blue500);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .prompt-block {
+      background: var(--blue50);
+      border-left: 3px solid var(--blue500);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    #contact {
+      background: var(--gray50);
+      padding: 64px 32px;
+    }
+
+    .contact-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .contact-left h2 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .contact-left p {
+      color: var(--gray600);
+      max-width: 380px;
+      font-size: 15px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-link:hover { color: var(--blue500); }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--blue200);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      background: var(--gray50);
+      border-top: 1px solid var(--gray300);
+      padding: 20px 32px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--gray600);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      #hero h1 { font-size: 38px; }
+      .hero-name { font-size: 22px; }
+      h2 { font-size: 30px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-inner { flex-direction: column; }
+      nav { padding: 0 16px; }
+      section { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">BE ✦</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">AI Builder Program</span>
+    <h1>AI Builder Portfolio</h1>
+    <div class="hero-name">Becky Elliott</div>
+    <div class="hero-title">Learning Transformation Changemaker</div>
+    <a href="#projects" class="btn-primary">↓ See My Projects</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-layout">
+      <img
+        class="about-photo"
+        src="data:image/jpeg;base64,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"
+        alt="Becky Elliott"      />
+      <div class="about-content">
+        <span class="section-label">About Me</span>
+        <h2>Nice to meet you!</h2>
+        <p class="about-text">
+          I work at the intersection of learning design and technology — figuring out how people learn best and building the tools that make it happen. These days, I'm deep in the world of AI, exploring how it can transform the way we design learning experiences, automate the repetitive stuff, and free us up to do more meaningful work. This portfolio is a living record of everything I'm building along the way.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-inner">
+    <span class="section-label">Current Focus</span>
+    <h2>What I'm working on!</h2>
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="work-icon">⚡</div>
+        <h3>AI Workflow Automation</h3>
+        <p>Designing repeatable, intelligent workflows that replace manual busy work — from email management to file organization to task routing.</p>
+      </div>
+
+      <div class="work-card">
+        <div class="work-icon">🧩</div>
+        <h3>Productivity Systems</h3>
+        <p>Building systems that help people and AI work better together — structured memory, smart task lists, and context files that make collaboration seamless.</p>
+      </div>
+
+      <div class="work-card">
+        <div class="work-icon">🎓</div>
+        <h3>Learning Experience Design</h3>
+        <p>Applying AI to the craft of learning design — faster iteration, smarter content, and tools that help learners engage more deeply.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- YELLOW ACCENT -->
+<div class="accent-bar">
+  <p>Every project below is something I actually built — from scratch, with AI as my collaborator.</p>
+</div>
+
+<!-- AI PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <span class="section-label">AI Projects</span>
+    <h2>Things I've built!</h2>
+
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <span class="section-label">Get in touch</span>
+      <h2>Let's connect!</h2>
+      <p>I love talking about AI, learning design, and building things that actually work. Drop me a line.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:beckyjelliott@gmail.com" class="contact-link">
+        <span class="contact-icon">✉️</span>
+        beckyjelliott@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/becky-elliott-7441379/" target="_blank" class="contact-link">
+        <span class="contact-icon">💼</span>
+        LinkedIn — Becky Elliott
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="footer-bottom">
+  © 2026 Becky Elliott · AI Builder Portfolio · Built with Claude
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-header">
+      <div class="modal-type" id="modalType"></div>
+      <h3 id="modalTitle"></h3>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  // ─── MODAL CONTENT LIBRARY ───────────────────────────────────────────────
+
+  const EMPTY_POPUP = `<p style="color:var(--gray600);font-style:italic;">Content coming soon — check back as this project develops!</p>`;
+
+  const modalContent = {
+
+    "Design System Skill": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Found an inspiration website</strong>
+              <span>Identified Ellii.com as the design reference — a site whose vibe matched exactly what I wanted for my own work.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Used Claude in Chrome to extract the design DNA</strong>
+              <span>Asked Claude to browse the live site and pull out every meaningful design decision: colors, font weights, border radii, spacing rules, copy voice, and component patterns.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Used /skill-creator to turn it into a reusable skill</strong>
+              <span>Packaged everything into a SKILL.md file using the skill-creator workflow — so the design system lives as an installable skill, not just a document.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Now it works everywhere</strong>
+              <span>Type <code style="background:var(--blue50);padding:2px 6px;border-radius:4px;font-size:12px;">/elli-design</code> and every build — in Cowork or Chat — automatically matches my style. No re-explaining. No re-prompting.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">Vibe</div>
+          <div class="vibe-tags">
+            <span class="vibe-tag" style="background:var(--blue500);color:#fff;">Friendly</span>
+            <span class="vibe-tag" style="background:var(--yellow);color:var(--text);">Bright</span>
+            <span class="vibe-tag" style="background:var(--blue200);color:var(--blue700);">Approachable</span>
+            <span class="vibe-tag" style="background:var(--gray50);color:var(--text);border:1px solid var(--gray300);">Structured</span>
+            <span class="vibe-tag" style="background:var(--blue50);color:var(--blue500);">Playful</span>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Color Palette</div>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#5774FC;"></div>
+              <div class="swatch-label"><span class="swatch-name">Blue 500</span><span class="swatch-hex">#5774FC</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#4D6AF5;"></div>
+              <div class="swatch-label"><span class="swatch-name">Blue 600</span><span class="swatch-hex">#4D6AF5</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#D9E0FF;"></div>
+              <div class="swatch-label"><span class="swatch-name">Blue 200</span><span class="swatch-hex">#D9E0FF</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#F3F5FD;border-bottom:1px solid var(--gray300);"></div>
+              <div class="swatch-label"><span class="swatch-name">Blue 50</span><span class="swatch-hex">#F3F5FD</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#FED502;"></div>
+              <div class="swatch-label"><span class="swatch-name">Yellow ✦</span><span class="swatch-hex">#FED502</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#231F20;"></div>
+              <div class="swatch-label"><span class="swatch-name">Text</span><span class="swatch-hex">#231F20</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#616060;"></div>
+              <div class="swatch-label"><span class="swatch-name">Gray 600</span><span class="swatch-hex">#616060</span></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#F9F9F9;border-bottom:1px solid var(--gray300);"></div>
+              <div class="swatch-label"><span class="swatch-name">Gray 50</span><span class="swatch-hex">#F9F9F9</span></div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--gray600);margin-top:10px;">✦ Yellow used exactly once per page — maximum impact through restraint.</p>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Typography — Open Sans only</div>
+          <div class="type-samples">
+            <div class="type-row">
+              <div class="type-spec">60px / 800<br>Hero H1</div>
+              <div style="font-size:32px;font-weight:800;color:var(--text);line-height:1.1;">AI Builder!</div>
+            </div>
+            <div class="type-row">
+              <div class="type-spec">40px / 800<br>Section H2</div>
+              <div style="font-size:28px;font-weight:800;color:var(--text);">Things I've built!</div>
+            </div>
+            <div class="type-row">
+              <div class="type-spec">20px / 700<br>Card H3</div>
+              <div style="font-size:18px;font-weight:700;color:var(--text);">Design System Skill</div>
+            </div>
+            <div class="type-row">
+              <div class="type-spec">16px / 400<br>Body copy</div>
+              <div style="font-size:14px;color:var(--gray600);line-height:1.6;">Warm, first-person, like talking to a friend.</div>
+            </div>
+            <div class="type-row">
+              <div class="type-spec">12px / 700<br>Section label</div>
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue500);">Current Focus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Layout Principles</div>
+          <div class="doc-list">
+            <div class="doc-list-item">Max content width 970px, always centered</div>
+            <div class="doc-list-item">Buttons are always pill-shaped — border-radius: 500px</div>
+            <div class="doc-list-item">Cards use border-radius: 16px (not fully pill)</div>
+            <div class="doc-list-item">Section padding: 80px top/bottom on desktop, 56px on mobile</div>
+            <div class="doc-list-item">Sections alternate between white and blue-50 backgrounds</div>
+            <div class="doc-list-item">Only Google Fonts allowed as external resource</div>
+          </div>
+        </div>`
+    },
+
+    "Portfolio Website": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Started with a simple scaffolded HTML page</strong>
+              <span>Gave Claude a clear structure brief: Hero, About, Work, Projects grid, Contact — all in a single self-contained HTML file.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Applied my design system skill to style it</strong>
+              <span>Used <code style="background:var(--blue50);padding:2px 6px;border-radius:4px;font-size:12px;">/elli-design</code> so Claude automatically applied the full color palette, typography, components, and layout rules — no manual design decisions needed.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Claude interviewed me to fill in real content</strong>
+              <span>Instead of writing copy from scratch, Claude asked targeted questions about my title, background, focus areas, and contact info — then wrote everything in my voice.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Built out project cards as I completed each session</strong>
+              <span>The portfolio is a living document — each AI Builder session adds a new card with real content, step-by-step docs, and a documentation popup.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">Techniques Used</div>
+          <div class="doc-list">
+            <div class="doc-list-item">Single self-contained HTML file — no build tools, no dependencies</div>
+            <div class="doc-list-item">CSS custom properties (variables) for the full design token system</div>
+            <div class="doc-list-item">JavaScript-driven card grid — project data lives in a JS array, cards render dynamically</div>
+            <div class="doc-list-item">Modal popup system with Escape key + backdrop click to close</div>
+            <div class="doc-list-item">Rich HTML modal bodies — each card's popup is a full HTML string injected at open time</div>
+            <div class="doc-list-item">Responsive layout via a single CSS media query at 720px</div>
+            <div class="doc-list-item">Google Fonts as the only external resource</div>
+            <div class="doc-list-item">Sticky nav with scroll-smooth anchors to each section</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Key Prompts — Build Your Own</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="prompt-block">"Build me a complete portfolio website as a single self-contained HTML file. Interview me about any information you don't have before building."</div>
+            <div class="prompt-block">"Read /[your-design-skill] before writing any CSS. Apply the design system to every element."</div>
+            <div class="prompt-block">"Build out the [project name] card with a visual step-by-step How I Built This popup and a Documentation popup."</div>
+            <div class="prompt-block">"Update the existing portfolio HTML file in my working directory — don't create a new file."</div>
+            <div class="prompt-block">"Keep all other cards as Coming Soon with empty popups. Only build out the cards I specify."</div>
+          </div>
+        </div>`
+    },
+
+    "Voice Guide Skill": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Pulled my 40 most recent sent emails</strong>
+              <span>Used the Gmail connector to export a clean set of real outbound emails — enough to show patterns across different contexts, relationships, and registers.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Used Claude to analyze tone, registers, sentence patterns, and rhetorical moves</strong>
+              <span>Claude read all 40 emails and surfaced recurring stylistic fingerprints — the kinds of things that make writing sound like <em>you</em> rather than a generic AI assistant.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Generated a structured 8-section voice guide</strong>
+              <span>The analysis became a reusable document covering Core Identity, Registers, Sentence Patterns, Rhetorical Moves, Emotional Register, Do's and Don'ts, Quick Reference, and Calibration Tests.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Saved it as a humanize-writing skill</strong>
+              <span>Packaged the guide as an installable <code style="background:var(--blue50);padding:2px 6px;border-radius:4px;font-size:12px;">/humanize-writing</code> skill so Claude can write in my voice on any task — emails, docs, messages — without re-explaining.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">The 8 Sections of the Voice Guide</div>
+          <div class="doc-list">
+            <div class="doc-list-item"><strong>Core Identity</strong> — the overall personality and values that show up across all writing contexts</div>
+            <div class="doc-list-item"><strong>Registers</strong> — how tone shifts between formal, collegial, direct, and warm depending on audience</div>
+            <div class="doc-list-item"><strong>Sentence Patterns</strong> — characteristic structures, length preferences, and rhythm</div>
+            <div class="doc-list-item"><strong>Rhetorical Moves</strong> — recurring techniques like framing, hedging, pivoting, and closing</div>
+            <div class="doc-list-item"><strong>Emotional Register</strong> — how warmth, urgency, enthusiasm, and directness are calibrated</div>
+            <div class="doc-list-item"><strong>Do's and Don'ts</strong> — specific things that are always in-voice or always off-voice</div>
+            <div class="doc-list-item"><strong>Quick Reference</strong> — a one-page cheat sheet Claude can use at the start of any writing task</div>
+            <div class="doc-list-item"><strong>Calibration Tests</strong> — sample prompts to verify the skill is writing in your voice before sending</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Build Your Own — Copyable Prompt</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="prompt-block">"I'm going to paste 40 of my recent sent emails. Analyze them for: (1) core personality and values, (2) how my tone shifts by context and audience, (3) recurring sentence structures and rhythm, (4) rhetorical moves I use repeatedly, (5) how I calibrate warmth vs. directness, (6) what I never do stylistically. Then write an 8-section voice guide I can turn into a reusable AI skill."</div>
+            <div class="prompt-block">"Now package this voice guide as a SKILL.md file called humanize-writing. The skill should activate whenever I ask Claude to write, rewrite, or humanize anything — and should make the output sound like it came from me."</div>
+          </div>
+        </div>`
+    },
+
+    "Email Manager Scheduled Task": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Connected Gmail to Claude</strong>
+              <span>Used the Gmail MCP connector in Cowork to give Claude secure read/write access to my inbox — the foundation for everything else.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Built an email-manager skill that filters noise and prioritizes what matters</strong>
+              <span>The <code style="background:var(--blue50);padding:2px 6px;border-radius:4px;font-size:12px;">/email-manager</code> skill reads the inbox, skips newsletters and FYIs, and surfaces only threads that need a decision or reply.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Wired it to my voice guide skill</strong>
+              <span>The email-manager skill calls <code style="background:var(--blue50);padding:2px 6px;border-radius:4px;font-size:12px;">/humanize-writing</code> before drafting any reply — so every draft sounds like me, not like a bot.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Wrapped it in a scheduled task that runs every morning</strong>
+              <span>Used the schedule skill to run the full workflow automatically at 8am — inbox triage and reply drafts waiting for me when I sit down.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">How the Skill Works</div>
+          <div class="doc-list">
+            <div class="doc-list-item">Reads the last 24 hours of inbox threads via Gmail connector</div>
+            <div class="doc-list-item">Skips newsletters, automated alerts, cc-only threads, and calendar noise</div>
+            <div class="doc-list-item">Flags threads needing a reply vs. threads needing a decision vs. threads that are just FYI</div>
+            <div class="doc-list-item">For reply-needed threads: reads full context, drafts a response using the voice guide skill</div>
+            <div class="doc-list-item">Surfaces a clean triage summary — what needs attention, what can wait, what's already handled</div>
+            <div class="doc-list-item">Saves drafts to Gmail as drafts (not sent) so I can review before sending</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Build Your Own — Copyable Prompts</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="prompt-block">"Connect my Gmail inbox and build an email-manager skill that: skips noise (newsletters, alerts, CCs), flags threads needing reply vs. decision vs. FYI, and drafts replies for anything that needs one. Use my /humanize-writing skill so drafts sound like me."</div>
+            <div class="prompt-block">"Now schedule this to run automatically every morning at 8am. I want to open my computer and find the triage summary and any draft replies already waiting."</div>
+          </div>
+        </div>`
+    },
+
+    "Spreadsheet Analysis": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Loaded a spreadsheet into Claude</strong>
+              <span>Dropped the raw file directly into Cowork — no cleanup, no prep. Just the messy real-world data as-is.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Asked for an overview and recommended computed columns</strong>
+              <span>Claude summarized what was in the data, flagged quality issues, and suggested which derived columns would be most useful to add.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Had Claude write the formulas and run them</strong>
+              <span>Instead of writing formulas myself, I described what I wanted in plain English. Claude wrote and applied them directly to the sheet.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Built two data visualizations directly in the sheet</strong>
+              <span>Asked Claude to pick the two most informative chart types for the data and build them in — no manual chart configuration needed.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <strong>Asked for the most interesting patterns and outliers</strong>
+              <span>Finished by asking Claude to surface anything surprising, counterintuitive, or worth flagging — the kind of thing you'd miss just eyeballing the data.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">The Dataset &amp; Charts</div>
+          <div class="doc-list">
+            <div class="doc-list-item">Dataset: a real export from a work tool — messy column names, mixed formats, a handful of blanks</div>
+            <div class="doc-list-item">Chart 1: a bar chart showing distribution across the most important categorical column</div>
+            <div class="doc-list-item">Chart 2: a trend line over time showing how volume changed week over week</div>
+            <div class="doc-list-item">Both charts chosen by Claude based on what the data actually supported — not just default options</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Prompt Chain — Run This on Any Spreadsheet</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="prompt-block">"Here's a spreadsheet. Give me a plain-English overview: what's in it, what shape is the data, and what quality issues do you see?"</div>
+            <div class="prompt-block">"Based on the data, what computed columns would be most useful to add? Write and apply the formulas for the top three."</div>
+            <div class="prompt-block">"Build two charts that best represent this dataset. Choose the chart types that fit the data — don't just default to bar charts."</div>
+            <div class="prompt-block">"Now tell me the three most interesting patterns, outliers, or surprises in this data. What would a data analyst flag in a meeting?"</div>
+          </div>
+        </div>`
+    },
+
+    "Data Analysis Presentation": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Outlined the story with Claude before designing</strong>
+              <span>Started with the data and asked Claude to find the narrative arc — what's the headline, what supports it, what's the "so what." Got a slide-by-slide outline before touching any design tool.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Built the deck in Cowork using my design skill</strong>
+              <span>Used <code style="background:var(--blue50);padding:2px 6px;border-radius:4px;font-size:12px;">/elli-design</code> so Claude applied my full design system automatically — colors, typography, layout, and visual hierarchy all matched my brand without manual adjustments.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Exported as PDF/PowerPoint/HTML and shared it</strong>
+              <span>One session, one export, one shareable link. The deck went from raw data to polished and ready-to-present without ever opening a design tool manually.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">The Outline &amp; Design Choices</div>
+          <div class="doc-list">
+            <div class="doc-list-item">Outline: Title → Key Finding → Supporting Evidence (2–3 slides) → So What / Recommendation → Next Steps</div>
+            <div class="doc-list-item">Design choice: one chart per slide — no walls of data, just the number that makes the point</div>
+            <div class="doc-list-item">Design choice: first-person framing in headlines ("We saw X" not "X was observed") — keeps the story human</div>
+            <div class="doc-list-item">Design choice: applied /elli-design skill so everything matched my existing brand without a single manual color pick</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Prompt — Take Any Analysis from Data to Deck</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="prompt-block">"Here's my dataset and the key finding I want to communicate: [finding]. Build me a slide-by-slide outline that tells this as a story — headline, supporting evidence, and a clear 'so what' at the end."</div>
+            <div class="prompt-block">"Now build the full deck from that outline. Use /elli-design for styling. One key point per slide, one chart where data supports it. Export as [PDF / PPTX / HTML]."</div>
+          </div>
+        </div>`
+    },
+
+    "Content Editing Workflow": {
+      built: true,
+      howIBuiltThis: `
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Drop in the raw draft</strong>
+              <span>Training materials, client writing, or session guides go in exactly as first written — no cleanup beforehand.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Structural pass first, before any line editing</strong>
+              <span>Claude checks the logic and flow — is anything out of order, missing, or redundant — before touching a single sentence.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Voice pass using /humanize-writing</strong>
+              <span>Runs the draft through my voice guide skill so it reads like me, not like a generic AI writing assistant.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Consistency check against format</strong>
+              <span>Terminology, formatting, and structure get checked against whatever established pattern the piece belongs to — like the training-kit session format.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <strong>Final proofread</strong>
+              <span>One last pass for grammar, clarity, and anything that still reads awkwardly out loud.</span>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">Why This Order Matters</div>
+          <div class="doc-list">
+            <div class="doc-list-item">Structure before sentences — fixing flow after a line edit means re-editing the same sentences twice</div>
+            <div class="doc-list-item">Voice pass happens before the consistency check, so tone fixes don't get flagged as format errors</div>
+            <div class="doc-list-item">Each pass is a separate prompt — bundling all five into one request produces shallower results on every step</div>
+            <div class="doc-list-item">Final proofread is read-aloud style — catches awkward phrasing that a silent read misses</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Prompt Chain — Run This on Any Draft</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="prompt-block">"Here's a rough draft. Before editing any sentences, check the structure: is anything out of order, missing, or redundant? Give me the structural issues only."</div>
+            <div class="prompt-block">"Now revise for voice — make it sound like me, not like an AI wrote it."</div>
+            <div class="prompt-block">"Check this against [the established format/template] for consistency in terminology and structure. Flag anything that doesn't match."</div>
+            <div class="prompt-block">"Final pass: proofread for grammar and clarity, and flag anything that would sound awkward read aloud."</div>
+          </div>
+        </div>`
+    },
+
+    "File Organization Process": {
+      built: true,
+      howIBuiltThis: `
+        <div class="docs-section">
+          <div class="docs-section-title">The Folder Tree I Landed On</div>
+          <pre style="background:var(--blue50);border-radius:10px;padding:16px 20px;font-family:monospace;font-size:13px;line-height:1.75;color:var(--text);overflow-x:auto;margin:0;">📁 Client Work/
+├── 📁 Active Clients/
+│   └── 📁 [Client Name]/
+├── 📁 Archive/
+└── 📁 Proposals &amp; Contracts/
+
+📁 Teacher Training/
+├── 📁 Session Materials/
+├── 📁 Slide Decks/
+└── 📁 Reference &amp; Research/
+
+📁 Business Ops/
+├── 📁 Invoicing/
+├── 📁 Marketing/
+└── 📁 Templates/</pre>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">3 Organizing Principles I Asked AI to Optimize For</div>
+          <div class="step-list">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <strong>Active vs. reference</strong>
+                <span>Anything I touch weekly lives at the top level. Anything I touch rarely gets nested one level deeper — so the folders I open most are never buried.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <strong>Group by client or purpose, not file type</strong>
+                <span>No generic "Documents" or "Misc" folders. Everything is grouped by the client or business function it belongs to, since that's how I actually go looking for it.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <strong>Shallow over deep</strong>
+                <span>Capped at three folder levels. If I need a fourth level to find something, the system has failed — I asked AI to flatten anything deeper.</span>
+              </div>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">Before &amp; After</div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:220px;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray600);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Before</div>
+              <pre style="background:var(--gray50);border:1px solid var(--gray300);border-radius:10px;padding:14px 16px;font-family:monospace;font-size:12px;line-height:1.7;color:var(--gray600);margin:0;">Downloads/
+├── file (12).pdf
+├── Untitled document.docx
+├── IMG_4021.png
+├── client stuff/
+│   ├── invoice_final.xlsx
+│   └── invoice_final_v2.xlsx
+├── training old/
+└── new folder/</pre>
+            </div>
+            <div style="flex:1;min-width:220px;">
+              <div style="font-size:11px;font-weight:700;color:var(--blue500);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">After</div>
+              <pre style="background:var(--blue50);border:1px solid var(--blue200);border-radius:10px;padding:14px 16px;font-family:monospace;font-size:12px;line-height:1.7;color:var(--text);margin:0;">Client Work/Active Clients/
+Teacher Training/Session Materials/
+Business Ops/Invoicing/
+Business Ops/Templates/</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Copyable Prompt — Audit &amp; Reorganize Any Folder</div>
+          <div class="prompt-block">"Look through this folder and everything inside it. Tell me: (1) what's actually in here, (2) which files are duplicates, outdated, or junk, (3) what natural categories the real content falls into. Then propose a folder structure — no more than 3 levels deep — organized by how I'd actually go looking for something, not by file type. Ask me before deleting or moving anything."</div>
+        </div>`
+    },
+
+    "AI Context File": {
+      built: true,
+      howIBuiltThis: `
+        <div class="docs-section">
+          <div class="docs-section-title">The 6 Sections of My Context File</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;">
+            <div style="border:1px solid var(--gray300);border-radius:10px;padding:16px;">
+              <div style="font-size:20px;margin-bottom:8px;">👋</div>
+              <div style="font-size:13px;font-weight:700;margin-bottom:4px;">About Me</div>
+              <div style="font-size:12px;color:var(--gray600);line-height:1.5;">Who I am, what I do, how my work is structured</div>
+            </div>
+            <div style="border:1px solid var(--gray300);border-radius:10px;padding:16px;">
+              <div style="font-size:20px;margin-bottom:8px;">🎯</div>
+              <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Goals This Quarter</div>
+              <div style="font-size:12px;color:var(--gray600);line-height:1.5;">What I'm actively working toward right now</div>
+            </div>
+            <div style="border:1px solid var(--gray300);border-radius:10px;padding:16px;">
+              <div style="font-size:20px;margin-bottom:8px;">💬</div>
+              <div style="font-size:13px;font-weight:700;margin-bottom:4px;">How I Like AI to Respond</div>
+              <div style="font-size:12px;color:var(--gray600);line-height:1.5;">Tone, format, and level of polish I expect</div>
+            </div>
+            <div style="border:1px solid var(--gray300);border-radius:10px;padding:16px;">
+              <div style="font-size:20px;margin-bottom:8px;">📏</div>
+              <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Rules</div>
+              <div style="font-size:12px;color:var(--gray600);line-height:1.5;">Non-negotiables — things AI should never do without asking</div>
+            </div>
+            <div style="border:1px solid var(--gray300);border-radius:10px;padding:16px;">
+              <div style="font-size:20px;margin-bottom:8px;">🛠️</div>
+              <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Tools</div>
+              <div style="font-size:12px;color:var(--gray600);line-height:1.5;">What I actually work in day to day</div>
+            </div>
+            <div style="border:1px solid var(--gray300);border-radius:10px;padding:16px;">
+              <div style="font-size:20px;margin-bottom:8px;">🗂️</div>
+              <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Key Files</div>
+              <div style="font-size:12px;color:var(--gray600);line-height:1.5;">Where my important stuff actually lives</div>
+            </div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">What Each Section Covers — And Why It Matters</div>
+          <div class="doc-list">
+            <div class="doc-list-item"><strong>About Me</strong> — grounds every answer in my actual role and business, so I'm not re-explaining context every session</div>
+            <div class="doc-list-item"><strong>Goals This Quarter</strong> — keeps AI pointed at what I actually care about right now, not generic assistance</div>
+            <div class="doc-list-item"><strong>How I Like AI to Respond</strong> — sets format and tone defaults once, instead of correcting them every chat</div>
+            <div class="doc-list-item"><strong>Rules</strong> — hard boundaries (like "ask before deleting") that protect me from AI overreach</div>
+            <div class="doc-list-item"><strong>Tools</strong> — tells AI what's actually available to use, so suggestions stay realistic</div>
+            <div class="doc-list-item"><strong>Key Files</strong> — points AI to where my real files live, so it looks in the right place instead of guessing</div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Copyable Starter Template</div>
+          <pre style="background:var(--blue50);border-radius:10px;padding:16px 20px;font-family:monospace;font-size:12px;line-height:1.8;color:var(--text);overflow-x:auto;margin:0;"># Memory
+
+## About Me
+[Your name, role, and what your work actually looks like]
+
+## Goals This Quarter
+1. [Goal one]
+2. [Goal two]
+
+## How I Like AI to Respond
+[Tone, length, format defaults]
+
+## Rules
+1. [Non-negotiable]
+2. [Non-negotiable]
+
+## Tools
+[What you actually work in]
+
+## Key Files
+[Where your important files live]</pre>
+        </div>`
+    },
+
+    "Skills Library": {
+      built: true,
+      howIBuiltThis: `
+        <div class="docs-section">
+          <div class="docs-section-title">Every Skill In My Library</div>
+          <div class="doc-list">
+            <div class="doc-list-item"><strong>elli-design</strong> — applies my Ellii.com brand system (colors, type, layout) to any new build automatically</div>
+            <div class="doc-list-item"><strong>brisk-teaching-design</strong> — applies a second visual style when I want that specific energetic, friendly look</div>
+            <div class="doc-list-item"><strong>humanize-writing</strong> — strips AI tells out of anything I write so it sounds like me, not a bot</div>
+            <div class="doc-list-item"><strong>email-manager</strong> — triages my inbox and drafts replies in my voice</div>
+            <div class="doc-list-item"><strong>pitch-deck</strong> — builds bilingual Korean/English funding decks matching my established slide structures</div>
+            <div class="doc-list-item"><strong>training-kit</strong> — turns teaching principles into a full teacher-training session package</div>
+            <div class="doc-list-item"><strong>skill-doctor</strong> — audits my whole skills library for quality issues and reports back, never changes anything on its own</div>
+            <div class="doc-list-item"><strong>skill-creator</strong> — builds, edits, and benchmarks new skills from scratch</div>
+            <div class="doc-list-item"><strong>docx / pptx / xlsx / pdf</strong> — create and edit Word, PowerPoint, Excel, and PDF files</div>
+            <div class="doc-list-item"><strong>schedule</strong> — sets up recurring or one-time scheduled tasks</div>
+            <div class="doc-list-item"><strong>task-management / memory-management</strong> — a shared task list and working-memory system that decodes my shorthand</div>
+            <div class="doc-list-item"><strong>setup-cowork</strong> — guided setup for installing plugins and connecting new tools</div>
+          </div>
+        </div>`,
+
+      documentation: `
+        <div class="docs-section">
+          <div class="docs-section-title">Built From Scratch vs. Installed From a Marketplace</div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:220px;">
+              <div style="font-size:11px;font-weight:700;color:var(--blue500);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;">Built From Scratch</div>
+              <div class="doc-list">
+                <div class="doc-list-item">elli-design</div>
+                <div class="doc-list-item">brisk-teaching-design</div>
+                <div class="doc-list-item">humanize-writing</div>
+                <div class="doc-list-item">email-manager</div>
+                <div class="doc-list-item">pitch-deck</div>
+                <div class="doc-list-item">training-kit</div>
+                <div class="doc-list-item">skill-doctor</div>
+              </div>
+            </div>
+            <div style="flex:1;min-width:220px;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray600);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;">Installed From a Marketplace</div>
+              <div class="doc-list">
+                <div class="doc-list-item">docx / pptx / xlsx / pdf</div>
+                <div class="doc-list-item">schedule</div>
+                <div class="doc-list-item">setup-cowork</div>
+                <div class="doc-list-item">skill-creator</div>
+                <div class="doc-list-item">task-management / memory-management</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="docs-section">
+          <div class="docs-section-title">Copyable Prompt — Find Your Next Skill</div>
+          <div class="prompt-block">"Based on the work I do, what skills do you think I should create?"</div>
+        </div>`
+    },
+
+  };
+
+  // ─── PROJECTS DATA ───────────────────────────────────────────────────────
+
+  const projects = [
+    { title: "Design System Skill",        description: "A reusable AI skill that applies a complete brand design system to any project." },
+    { title: "Portfolio Website",           description: "This very site — a self-contained HTML portfolio built through an AI-guided interview process." },
+    { title: "Voice Guide Skill",           description: "A psychological profile of how I write, turned into an AI skill any tool can use." },
+    { title: "Email Manager Scheduled Task",description: "A scheduled task that triages my inbox every morning and drafts replies in my voice." },
+    { title: "Content Editing Workflow",    description: "A multi-step review pipeline that takes any draft — training materials or client writing — from rough to publish-ready." },
+    { title: "Spreadsheet Analysis",        description: "Used Claude to clean, calculate, visualize, and surface insights from a real dataset — no formulas required." },
+    { title: "Data Analysis Presentation",  description: "Took a raw dataset and shipped a polished, shareable slide deck — all in one session." },
+    { title: "File Organization Process",   description: "Used AI to audit my files and design an organization system that actually fits how I work." },
+    { title: "AI Context File",             description: "A persistent context file that teaches my AI tool who I am, what I do, and how I work — loaded into every chat automatically." },
+    { title: "Skills Library",              description: "A library of the AI skills I built or installed that turn one-off prompts into repeatable workflows." }
+  ];
+
+  // ─── RENDER CARDS ────────────────────────────────────────────────────────
+
+  const grid = document.getElementById('projectsGrid');
+
+  projects.forEach(p => {
+    const isBuilt = !!(modalContent[p.title]?.built);
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+      <span class="${isBuilt ? 'project-built' : 'project-coming-soon'}">${isBuilt ? 'Built ✓' : 'Coming Soon'}</span>
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <div class="project-links">
+        <button class="btn-link" data-title="${p.title}" data-type="howIBuiltThis" onclick="openModal(this.dataset.title,this.dataset.type)">How I Built This</button>
+        <button class="btn-link" data-title="${p.title}" data-type="documentation" onclick="openModal(this.dataset.title,this.dataset.type)">Documentation</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // ─── MODAL LOGIC ─────────────────────────────────────────────────────────
+
+  function openModal(title, type) {
+    const typeLabel = type === 'howIBuiltThis' ? 'How I Built This' : 'Documentation';
+    const content = modalContent[title]?.[type] ?? EMPTY_POPUP;
+    document.getElementById('modalType').textContent = typeLabel;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').innerHTML = content;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.querySelector('.modal').scrollTop = 0;
+  }
+
+  document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('modalOverlay').classList.remove('open');
+  });
+
+  document.getElementById('modalOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalOverlay')) {
+      document.getElementById('modalOverlay').classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('open');
+  });
+</script>
+</body>
+</html>
